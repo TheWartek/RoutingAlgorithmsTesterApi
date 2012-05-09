@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph<T> {
-    private List<Point> vertices = new ArrayList<Point>();
-    private List<Edge<T>> edges = new ArrayList<Edge<T>>();
+    private List<Point> vertices;
+    private List<Edge<T>> edges;
+    
+    public Graph(int n) {
+	vertices = new ArrayList<Point>(n);
+	edges = new ArrayList<Edge<T>>(n);
+    }
 
     public List<Point> getVertices() {
 	return vertices;
