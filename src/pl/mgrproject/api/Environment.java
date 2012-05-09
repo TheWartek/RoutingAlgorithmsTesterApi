@@ -62,4 +62,12 @@ public class Environment {
     public static void drawStep(Generator gen) {
 	drawGraph(gen, ++nVert);
     }
+    
+    public static int getGraphPanelWidth() {
+	return getGraphPanel().getWidth();
+    }
+    
+    public static int getGraphPanelHeight() {
+	return getGraphPanel().getHeight();
+    }
 }
