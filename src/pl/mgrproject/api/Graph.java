@@ -6,11 +6,10 @@ import java.util.List;
 
 public class Graph<T> {
     private List<Point> vertices;
-    private List<Edge<T>> edges;
+    private List<Edge<T>> edges = new ArrayList<Edge<T>>();
     
     public Graph(int n) {
 	vertices = new ArrayList<Point>(n);
-	edges = new ArrayList<Edge<T>>(n);
     }
 
     public List<Point> getVertices() {
