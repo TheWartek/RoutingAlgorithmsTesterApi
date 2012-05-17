@@ -33,19 +33,20 @@ public class GraphPanel extends JPanel {
 	if (graph == null) {
 	    return;
 	}
-	Graphics2D g2 = (Graphics2D)g;
-	g2.setColor(Color.black);
-	List<Point> vertices = graph.getVertices();
 	
-	for (Point p : vertices) {
-	    g2.fillOval(p.x-2, p.y-2, 4, 4);
-	}
+	List<Point> vertices = graph.getVertices();
+	Graphics2D g2 = (Graphics2D)g;
 	
 	g2.setColor(Color.red);
 	for (Edge<?> e : graph.getEdges()) {
 	    Point first = vertices.get(e.first);
 	    Point last  = vertices.get(e.last);
 	    g2.drawLine(first.x, first.y, last.x, last.y);
+	}
+	
+	g2.setColor(Color.black);
+	for (Point p : vertices) {
+	    g2.fillOval(p.x-2, p.y-2, 4, 4);
 	}
     }
 }
