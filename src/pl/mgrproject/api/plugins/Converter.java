@@ -1,5 +1,7 @@
 package pl.mgrproject.api.plugins;
 
-public interface Converter extends Plugin {
+import pl.mgrproject.api.Graph;
 
+public interface Converter extends Plugin {
+    void setGraph(Graph<?> graph);
 }
