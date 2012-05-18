@@ -50,7 +50,8 @@ public class Environment {
 
     public static void drawGraph(Generator gen, int vertices) {
 	nVert = vertices;
-	final Graph<?> g = gen.getGraph(vertices);
+	gen.generate(vertices);
+	final Graph<?> g = gen.getGraph();
 	SwingUtilities.invokeLater(new Runnable() {
 	    @Override
 	    public void run() {
