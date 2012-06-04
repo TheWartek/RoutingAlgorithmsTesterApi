@@ -17,6 +17,7 @@ public class GraphPanel extends JPanel {
 
     private static final long serialVersionUID = 6502432419743348091L;
     private Graph<?> graph;
+    private List<Point> path;
     
     public GraphPanel() {
 	setBorder(BorderFactory.createEtchedBorder());
@@ -26,6 +27,10 @@ public class GraphPanel extends JPanel {
     public void draw(Graph<?> graph) {
 	this.graph = graph;
 	repaint();
+    }
+    
+    public void setPath(List<Point> path) {
+	this.path = path;
     }
     
     public void paintComponent(Graphics g) {
@@ -47,6 +52,13 @@ public class GraphPanel extends JPanel {
 	g2.setColor(Color.black);
 	for (Point p : vertices) {
 	    g2.fillOval(p.x-2, p.y-2, 4, 4);
+	}
+	
+	g2.setColor(Color.CYAN);
+	for (int i = 0; i < path.size()-1; ++i) {
+	    Point first = path.get(i);
+	    Point last  = path.get(i+1);
+	    g2.drawLine(first.x, first.y, last.x, last.y);
 	}
     }
 }
