@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 
@@ -47,9 +48,7 @@ public class GraphPanel extends JPanel {
 	for (Edge<?> e : graph.getEdges()) {
 	    Point first = vertices.get(e.first);
 	    Point last = vertices.get(e.last);
-	    
-//	    g2.drawLine(first.x, first.y, last.x, last.y);
-//	    g2.drawLine((first.x + last.x) - 5, (first.y + last.y) - 3, last.x, last.y);
+	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    drawArrow(g, first.x, first.y, last.x, last.y);
 	    g2.drawString(Integer.toString((Integer)e.value), (first.x + last.x) / 2, (first.y + last.y) / 2);
 	}
