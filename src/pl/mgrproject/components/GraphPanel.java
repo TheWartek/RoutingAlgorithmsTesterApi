@@ -1,5 +1,6 @@
 package pl.mgrproject.components;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -62,6 +63,10 @@ public class GraphPanel extends JPanel {
 
 	if (path != null) {
 	    g2.setColor(Color.CYAN);
+	    g2.setStroke(new BasicStroke(3.0f,
+	                                 BasicStroke.CAP_BUTT,
+	                                 BasicStroke.JOIN_MITER,
+	                                 10.0f, new float[]{10.0f}, 0.0f));
 	    for (int i = 0; i < path.size() - 1; ++i) {
 		Point first = path.get(i);
 		Point last = path.get(i + 1);
@@ -72,7 +77,7 @@ public class GraphPanel extends JPanel {
     
     void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
         Graphics2D g2 = (Graphics2D) g.create();
-        final int ARR_SIZE = 4;
+        final int ARR_SIZE = 6;
 
         double dx = x2 - x1, dy = y2 - y1;
         double angle = Math.atan2(dy, dx);
