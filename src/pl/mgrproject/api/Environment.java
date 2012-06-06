@@ -54,12 +54,7 @@ public class Environment {
     }
     
     public static void setPath(final List<Point> path) {
-	SwingUtilities.invokeLater(new Runnable() {
-	    @Override
-	    public void run() {
-		graph.setPath(path);
-	    }
-	});
+	graph.setPath(path);
     }
         
     public static int getGraphPanelWidth() {
