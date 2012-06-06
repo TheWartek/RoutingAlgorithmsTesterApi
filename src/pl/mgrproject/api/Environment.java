@@ -15,7 +15,6 @@ public class Environment {
     private static boolean stop;
     private static GraphPanel graph;
     private static ChartPanel chart;
-    private static int nVert = 1;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
@@ -51,10 +50,7 @@ public class Environment {
 	return chart;
     }
 
-    public static void drawGraph(Generator gen, int vertices) {
-	nVert = vertices;
-	gen.generate(vertices);
-	final Graph<?> g = gen.getGraph();
+    public static void drawGraph(final Graph<?> g) {
 	SwingUtilities.invokeLater(new Runnable() {
 	    @Override
 	    public void run() {
@@ -71,11 +67,7 @@ public class Environment {
 	    }
 	});
     }
-    
-    public static void drawStep(Generator gen) {
-	drawGraph(gen, ++nVert);
-    }
-    
+        
     public static int getGraphPanelWidth() {
 	return getGraphPanel().getWidth();
     }

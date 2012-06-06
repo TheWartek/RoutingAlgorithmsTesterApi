@@ -38,13 +38,20 @@ public class GraphPanel extends JPanel {
 
     public void paintComponent(Graphics g) {
 	super.paintComponent(g);
-	if (graph == null) {
-	    return;
+	
+	if (graph != null) {
+	    drawGraph(g);
 	}
-
+	
+	if (path != null) {
+	    drawPath(g);
+	}
+    }
+    
+    private void drawGraph(Graphics g) {
 	List<Point> vertices = graph.getVertices();
-	Graphics2D g2 = (Graphics2D) g;
-
+	Graphics2D g2 = (Graphics2D)g;
+	
 	g2.setColor(Color.red);
 	for (Edge<?> e : graph.getEdges()) {
 	    Point first = vertices.get(e.first);
@@ -60,23 +67,27 @@ public class GraphPanel extends JPanel {
 	    g2.fillOval(p.x - 2, p.y - 2, 4, 4);
 	    g2.drawString(Integer.toString(i), p.x, p.y);
 	}
-
-	if (path != null) {
-	    g2.setColor(Color.CYAN);
-	    g2.setStroke(new BasicStroke(3.0f,
-	                                 BasicStroke.CAP_BUTT,
-	                                 BasicStroke.JOIN_MITER,
-	                                 10.0f, new float[]{10.0f}, 0.0f));
-	    for (int i = 0; i < path.size() - 1; ++i) {
-		Point first = path.get(i);
-		Point last = path.get(i + 1);
-		g2.drawLine(first.x, first.y, last.x, last.y);
-	    }
+    }
+    
+    private void drawPath(Graphics g) {
+	Graphics2D g2 = (Graphics2D) g;
+	
+	g2.setColor(Color.BLUE);
+	g2.setStroke(new BasicStroke(3.0f,
+	                             BasicStroke.CAP_BUTT,
+	                             BasicStroke.JOIN_MITER,
+	                             10.0f,
+	                             new float[]{10.0f},
+	                             0.0f));
+	for (int i = 0; i < path.size() - 1; ++i) {
+	    Point first = path.get(i);
+	    Point last = path.get(i + 1);
+	    g2.drawLine(first.x, first.y, last.x, last.y);
 	}
     }
     
-    void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
-        Graphics2D g2 = (Graphics2D) g.create();
+    private void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
+        Graphics2D g2 = (Graphics2D)g.create();
         final int ARR_SIZE = 6;
 
         double dx = x2 - x1, dy = y2 - y1;
