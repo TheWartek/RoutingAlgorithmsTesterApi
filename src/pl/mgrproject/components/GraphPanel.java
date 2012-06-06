@@ -10,7 +10,6 @@ import java.awt.geom.AffineTransform;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pl.mgrproject.api.Edge;
@@ -24,9 +23,8 @@ public class GraphPanel extends JPanel {
 
     public GraphPanel() {
 	setBorder(BorderFactory.createEtchedBorder());
-	add(new JLabel("Graph Panel"));
     }
-
+        
     public void draw(Graph<?> graph) {
 	this.graph = graph;
 	repaint();

@@ -48,14 +48,9 @@ public class Environment {
 	}
 	return chart;
     }
-
+    
     public static void drawGraph(final Graph<?> g) {
-	SwingUtilities.invokeLater(new Runnable() {
-	    @Override
-	    public void run() {
-		graph.draw(g);
-	    }
-	});
+	graph.draw(g);
     }
     
     public static void setPath(final List<Point> path) {
