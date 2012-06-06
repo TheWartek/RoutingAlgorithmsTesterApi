@@ -7,6 +7,6 @@ import pl.mgrproject.api.Graph;
 
 public interface RoutingAlgorithm extends Plugin {
     public void setGraph(Graph<?> g);
-    public List<Point> getPath(int stop);
+    public List<Point> getPath(int stop) throws Exception;
     public void run(int start) throws Exception;
 }
