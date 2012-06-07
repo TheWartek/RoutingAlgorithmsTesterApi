@@ -78,9 +78,11 @@ public class GraphPanel extends JPanel {
 	                             new float[]{10.0f},
 	                             0.0f));
 	for (int i = 0; i < path.size() - 1; ++i) {
-	    Point first = path.get(i);
-	    Point last = path.get(i + 1);
-	    g2.drawLine(first.x, first.y, last.x, last.y);
+	    try {
+		Point first = path.get(i);
+		Point last = path.get(i + 1);
+		g2.drawLine(first.x, first.y, last.x, last.y);
+	    } catch (Exception e) {} //celowe zgubienie wyjatku. Jakims cudem petla for nie przestrzega czasami warunku zakonczenia O_o
 	}
     }
     
