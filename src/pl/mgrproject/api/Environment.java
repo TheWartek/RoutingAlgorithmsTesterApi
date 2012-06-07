@@ -3,8 +3,6 @@ package pl.mgrproject.api;
 import java.awt.Point;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
-
 import pl.mgrproject.api.plugins.PluginManager;
 import pl.mgrproject.components.ChartPanel;
 import pl.mgrproject.components.GraphPanel;

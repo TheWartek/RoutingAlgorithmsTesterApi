@@ -86,7 +86,7 @@ public class GraphPanel extends JPanel {
     
     private void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
         Graphics2D g2 = (Graphics2D)g.create();
-        final int ARR_SIZE = 6;
+        final int ARR_SIZE = 5;
 
         double dx = x2 - x1, dy = y2 - y1;
         double angle = Math.atan2(dy, dx);
@@ -94,7 +94,7 @@ public class GraphPanel extends JPanel {
         AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
         at.concatenate(AffineTransform.getRotateInstance(angle));
         g2.transform(at);
-
+        
         g2.drawLine(0, 0, len, 0);
         g2.fillPolygon(new int[] {len, len-ARR_SIZE, len-ARR_SIZE, len},
                       new int[] {0, -ARR_SIZE, ARR_SIZE, 0}, 4);
