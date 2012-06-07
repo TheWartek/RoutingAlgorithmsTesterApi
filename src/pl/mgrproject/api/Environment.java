@@ -1,6 +1,7 @@
 package pl.mgrproject.api;
 
 import java.awt.Point;
+import java.util.LinkedList;
 import java.util.List;
 
 import pl.mgrproject.api.plugins.PluginManager;
@@ -12,6 +13,7 @@ public class Environment {
     private static boolean stop;
     private static GraphPanel graph;
     private static ChartPanel chart;
+    private static List<Long> times = new LinkedList<Long>();
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
@@ -54,6 +56,10 @@ public class Environment {
     public static void setPath(final List<Point> path) {
 	graph.setPath(path);
     }
+    
+    public static void drawChart() {
+	chart.draw();
+    }
         
     public static int getGraphPanelWidth() {
 	return getGraphPanel().getWidth();
@@ -61,6 +67,14 @@ public class Environment {
     
     public static int getGraphPanelHeight() {
 	return getGraphPanel().getHeight();
+    }
+    
+    public static synchronized void addTime(long time) {
+	times.add(time);
+    }
+    
+    public static synchronized List<Long> getTimes() {
+	return times;
     }
     
 }
