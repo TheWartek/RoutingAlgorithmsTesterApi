@@ -1,7 +1,10 @@
 package pl.mgrproject.api;
 
 import java.awt.Point;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -78,16 +81,19 @@ public class Environment {
 	times.add(time);
 	++n;
 	if (n >= 10) {
+	    PrintWriter writer = null;
 	    try {
-		PrintWriter writer = new PrintWriter("data.txt");
+		writer = new PrintWriter(new BufferedWriter(new FileWriter("data.txt", true)));
 		
 		for (int i = startWrite; i < times.size(); ++i) {
 		    writer.println(i + "\t" + times.get(i));
 		}
-		
-		writer.close();
 	    } catch (FileNotFoundException e) {
 		e.printStackTrace();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    } finally {
+		writer.close();
 	    }
 	    startWrite += n;
 	    n = 0;
@@ -103,6 +109,12 @@ public class Environment {
     
     public static synchronized void resetTimes() {
 	times = new LinkedList<Long>();
+	startWrite = 0;
+	try {
+	    new PrintWriter("data.txt");
+	} catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	}
     }
     
 }
