@@ -1,6 +1,9 @@
 package pl.mgrproject.api;
 
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +17,8 @@ public class Environment {
     private static GraphPanel graph;
     private static ChartPanel chart;
     private static List<Long> times = new LinkedList<Long>();
+    private static int n = 0;
+    private static int startWrite = 0;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
@@ -71,10 +76,28 @@ public class Environment {
     
     public static synchronized void addTime(long time) {
 	times.add(time);
+	++n;
+	if (n >= 10) {
+	    try {
+		PrintWriter writer = new PrintWriter("data.txt");
+		
+		for (int i = startWrite; i < times.size(); ++i) {
+		    writer.println(i + "\t" + times.get(i));
+		}
+		
+		writer.close();
+	    } catch (FileNotFoundException e) {
+		e.printStackTrace();
+	    }
+	    startWrite += n;
+	    n = 0;
+	}
     }
     
     public static synchronized List<Long> getTimes() {
-	return times;
+	List<Long> l = new ArrayList<Long>(times.size());
+	l.addAll(times);
+	return l;
     }
     
 }

@@ -31,15 +31,17 @@ public class ChartPanel extends JPanel {
 	g2.setColor(Color.BLACK);
 	List<Long> times = Environment.getTimes();
 	
-	double scaleX = this.getWidth() / (times.size() == 0 ? 1 : times.size());
-	double scaleY = this.getHeight() / findMax(times).intValue();
+	double sX = new Double(this.getWidth()) / (times.size() == 0 ? 1 : times.size());
+	double sY = new Double(this.getHeight()) / findMax(times).intValue();
+	System.out.println("sx: " + sX);
+	System.out.println("sy: " + sY);
 	
 	for (int i = 0; i < times.size()-1; ++i) {
-	    int x1 = (int)(i * scaleX);
-	    int y1 = (int)(this.getHeight() - (times.get(i).intValue() * scaleY));
-	    int x2 = (int)(i+1 * scaleX);
-	    int y2 = (int)(this.getHeight() - (times.get(i+1).intValue() * scaleY));
-	    g2.drawLine(x1, y1, x2, y2);
+	    int x1 = i;
+	    int y1 = times.get(i).intValue();
+	    int x2 = i+1;
+	    int y2 = times.get(i+1).intValue();
+	    g2.drawLine((int)(x1*sX), (int)(this.getHeight() - (y1*sY)), (int)(x2*sX), (int)(this.getHeight() - ((y2*sY))));
 	}
     }
     
