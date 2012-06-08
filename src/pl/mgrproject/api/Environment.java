@@ -100,4 +100,9 @@ public class Environment {
 	return l;
     }
     
+    
+    public static synchronized void resetTimes() {
+	times = new LinkedList<Long>();
+    }
+    
 }

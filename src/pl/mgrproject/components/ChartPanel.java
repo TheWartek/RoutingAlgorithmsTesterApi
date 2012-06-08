@@ -33,8 +33,6 @@ public class ChartPanel extends JPanel {
 	
 	double sX = new Double(this.getWidth()) / (times.size() == 0 ? 1 : times.size());
 	double sY = new Double(this.getHeight()) / findMax(times).intValue();
-	System.out.println("sx: " + sX);
-	System.out.println("sy: " + sY);
 	
 	for (int i = 0; i < times.size()-1; ++i) {
 	    int x1 = i;
