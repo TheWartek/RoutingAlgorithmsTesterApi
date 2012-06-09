@@ -16,7 +16,7 @@ import pl.mgrproject.components.GraphPanel;
 
 public class Environment {
     private static PluginManager pluginManager;
-    private static boolean stop;
+    private static boolean stop = true;
     private static boolean pause;
     private static GraphPanel graph;
     private static ChartPanel chart;
@@ -35,6 +35,10 @@ public class Environment {
 
     public static void stopTest() {
 	stop = true;
+	times = new LinkedList<Long>();
+	iterationNumber = 2;
+	startWrite = 0;
+	n = 0;
     }
 
     public static void startTest() {
