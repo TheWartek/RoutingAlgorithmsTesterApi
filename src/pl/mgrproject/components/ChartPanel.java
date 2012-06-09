@@ -14,11 +14,9 @@ import pl.mgrproject.api.Environment;
 public class ChartPanel extends JPanel {
     
     private static final long serialVersionUID = 1L;
-    private BufferedImage img;
 
     public ChartPanel() {
 	setBorder(BorderFactory.createEtchedBorder());
-	img = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
     }
     
     public void draw() {
@@ -40,6 +38,19 @@ public class ChartPanel extends JPanel {
 	    int x2 = i+1;
 	    int y2 = times.get(i+1).intValue();
 	    g2.drawLine((int)(x1*sX), (int)(this.getHeight() - (y1*sY)), (int)(x2*sX), (int)(this.getHeight() - ((y2*sY))));
+	}
+	
+	if (times.size() > 0) {
+	    g2.setColor(Color.BLUE);
+	    int lastTime = times.get(times.size() - 1).intValue();
+	    int ly = (int) (this.getHeight() - lastTime * sY);
+	    g2.drawLine(0, ly, this.getWidth(), ly);
+	    if (ly - 15 > 5) {
+		g2.drawString(lastTime + " ms", 3, ly - 5);
+	    } else {
+		g2.drawString(lastTime + " ms", 3, ly + 20);
+	    }
+	    g2.setColor(Color.BLACK);
 	}
     }
     
