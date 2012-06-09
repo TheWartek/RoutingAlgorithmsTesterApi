@@ -17,11 +17,13 @@ import pl.mgrproject.components.GraphPanel;
 public class Environment {
     private static PluginManager pluginManager;
     private static boolean stop;
+    private static boolean pause;
     private static GraphPanel graph;
     private static ChartPanel chart;
     private static List<Long> times = new LinkedList<Long>();
     private static int n = 0;
     private static int startWrite = 0;
+    private static int iterationNumber = 2;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
@@ -38,9 +40,21 @@ public class Environment {
     public static void startTest() {
 	stop = false;
     }
+    
+    public static synchronized void pauseTest() {
+	pause = true;
+    }
+    
+    public static synchronized void resumeTest() {
+	pause = false;
+    }
 
-    public static boolean testIsStopped() {
+    public static synchronized boolean testIsStopped() {
 	return stop;
+    }
+    
+    public static boolean testIsPaused() {
+	return pause;
     }
 
     public static GraphPanel getGraphPanel() {
@@ -115,6 +129,14 @@ public class Environment {
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	}
+    }
+    
+    public static int getIterationNumber() {
+	return iterationNumber;
+    }
+    
+    public static void setIterationNumber(int it) {
+	iterationNumber = it;
     }
     
 }
