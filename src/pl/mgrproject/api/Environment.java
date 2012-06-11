@@ -24,6 +24,7 @@ public class Environment {
     private static int n = 0;
     private static int startWrite = 0;
     private static int iterationNumber = 2;
+    public static int i;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {

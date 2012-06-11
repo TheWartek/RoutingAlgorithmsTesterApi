@@ -46,9 +46,9 @@ public class ChartPanel extends JPanel {
 	    int ly = (int) (this.getHeight() - lastTime * sY);
 	    g2.drawLine(0, ly, this.getWidth(), ly);
 	    if (ly - 15 > 5) {
-		g2.drawString(lastTime + " ms", 3, ly - 5);
+		g2.drawString("Iteracja: " + Environment.i + " Czas: " + lastTime + " ms", 3, ly - 5);
 	    } else {
-		g2.drawString(lastTime + " ms", 3, ly + 20);
+		g2.drawString("Iteracja: " + Environment.i + " Czas: " + lastTime + " ms", 3, ly + 20);
 	    }
 	    g2.setColor(Color.BLACK);
 	}
